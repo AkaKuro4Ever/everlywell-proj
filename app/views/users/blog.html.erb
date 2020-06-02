@@ -1,5 +1,0 @@
-<%if logged_in? && current_user==@user%>
-  <%=link_to "Edit Blog", edit_blog_path%>
-<%else%>
-  <%=@user.username%>'s Blog
-<%end%>

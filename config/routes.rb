@@ -1,29 +1,30 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :users, only: [:index, :create, :show, :edit, :destroy, :update] do
-    resources :books, only: [:new, :show, :index, :edit]
-  end
-  resources :genres, only: [:index, :create, :show] do
-    resources :books, only: [:index]
-  end
-  resources :books, only: [:index, :show, :create, :update, :destroy] do
-    resources :comments, only: [:create]
-  end
-  resources :sessions, only: [:create]
+  resources :members
+  # resources :comments
+  # resources :users, only: [:index, :create, :show, :edit, :destroy, :update] do
+  #   resources :books, only: [:new, :show, :index, :edit]
+  # end
+  # resources :genres, only: [:index, :create, :show] do
+  #   resources :books, only: [:index]
+  # end
+  # resources :books, only: [:index, :show, :create, :update, :destroy] do
+  #   resources :comments, only: [:create]
+  # end
+  # resources :sessions, only: [:create]
 
-  #Remember to put indexes for each genre
-  get '/signup' => 'users#new'
-  get '/login' => 'sessions#new'
-  post '/logout' => 'sessions#destroy'
-  get '/auth/facebook/callback' => 'sessions#create_FB'
+  # #Remember to put indexes for each genre
+  # get '/signup' => 'users#new'
+  # get '/login' => 'sessions#new'
+  # post '/logout' => 'sessions#destroy'
+  # get '/auth/facebook/callback' => 'sessions#create_FB'
   root 'application#index'
-  post '/follow/:id' => 'books#follow', as: :follow
-  get 'comments/:id/comment_data', to: 'comments#comment_data'
-  delete '/comments' => 'comments#destroy', as: :destroy
-  post '/unfollow/:id' => 'books#unfollow', as: :unfollow
-  get '/hikari_faves' => 'books#hikari_faves'
-  get '/users/:id/blog' => 'users#blog', as: :blog
-  get '/users/:id/blog/edit' => 'users#editblog', as: :edit_blog
+  # post '/follow/:id' => 'books#follow', as: :follow
+  # get 'comments/:id/comment_data', to: 'comments#comment_data'
+  # delete '/comments' => 'comments#destroy', as: :destroy
+  # post '/unfollow/:id' => 'books#unfollow', as: :unfollow
+  # get '/hikari_faves' => 'books#hikari_faves'
+  # get '/users/:id/blog' => 'users#blog', as: :blog
+  # get '/users/:id/blog/edit' => 'users#editblog', as: :edit_blog
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 # The priority is based upon order of creation: first created -> highest priority.

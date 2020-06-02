@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_223946) do
-
-  create_table "book_genres", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "genre_id"
-  end
+ActiveRecord::Schema.define(version: 2020_06_02_030558) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -24,39 +19,11 @@ ActiveRecord::Schema.define(version: 2018_07_05_223946) do
     t.text "summary"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text "content"
-    t.integer "book_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "following_followers", force: :cascade do |t|
-    t.integer "following_id"
-    t.integer "follower_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genres", force: :cascade do |t|
+  create_table "members", force: :cascade do |t|
     t.string "name"
+    t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_books", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "uid"
   end
 
 end
