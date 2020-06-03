@@ -7,6 +7,8 @@
 	<br></br>
 	Shortened Link to Website:  <a href=<%=@member.shortened_weblink%>>
 <%=@member.shortened_weblink%></a>
+	<br></br>
+	Number of Friends: <%=@member.following.count%>
 	
 <br></br>
-<%=link_to "Edit Member Profile", edit_member_path(@member)%>
+<%# <%=link_to "Edit Member Profile", edit_member_path(@member)%>

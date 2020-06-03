@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hikari Project</title>
+    <title>Everlywell Project</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,9 @@
 
   <body>
     <class = "Hello">
+		<h3> <%=link_to "Create a New Member", new_member_path%> </h3>
+		<br>
+		<h3> <%=link_to "See All Members", members_path%> </h3>
     </class>
     <%= yield %>
   </body>

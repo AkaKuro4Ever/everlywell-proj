@@ -1,23 +1,39 @@
 # README
 
-Welcome to the Hikari Project - Ruby on Rails version.
+Welcome to the Everlywell Backend Coding Challenge.
 
-It lets you publish basics about stories, lets you follow other people's work, and comment on their postings.
+## CHECKLIST
 
-To run this project, clone this repo, run `bundle install`, then `bin/rails db:migrate RAILS_ENV=development
-`, and then `rails s`.
+[x] A member can be created using their name and a personal website address.
 
-It should be up and running on the localhost:3000 if you're in the terminal (necessary for the FB login).
+[ ] When a member is created, all the heading (h1-h3) values are pulled in from the website to that members profile.
 
-Currently using the gem ruby '2.3.3', ActiveRecord Migration is Version 5.2
-Dependent on Rails, omniauth, bcrypt, and rack. See the Gemfile for more details.
+[x] The website url is shortened (e.g. using <http://goo.gl).>
 
-Link to Video Walkthrough/Demo: https://youtu.be/6RGluEe6m4M
+[-] After the member has been added, I can define their friendships with other existing members. Friendships are bi-directional i.e. If David is a friend of Oliver, Oliver is always a friend of David as well.
 
-Blogposts About the Journey:
+- [x] Relationship schema for bi-directional friendships
 
-https://akakuro4ever.github.io/rails_final_project_-_finally
+[x] The interface should list all members with their name, short url and the number of friends.
 
-https://akakuro4ever.github.io/rails_and_javascript_project_reflection
+[-] Viewing an actual member should display the name, website URL, shortening, website headings, and links to their friends' pages.
 
-# hikari-project
+- [x] Name
+- [x] Website URL
+- [x] Shortening
+- [ ] Website Headings
+- [ ] Links to Friend's pages
+
+[ ] Now, looking at Alan's profile, I want to find experts in the application who write about a certain topic and are not already friends of Alan.
+
+[ ] Results should show the path of introduction from Alan to the expert e.g. Alan wants to get introduced to someone who writes about 'Dog breeding'. Claudia's website has a heading tag "Dog breeding in Ukraine". Bart knows Alan and Claudia. An example search result would be Alan -> Bart -> Claudia ("Dog breeding in Ukraine").
+
+We encourage the use of any libraries for everything except the search functionality, in which we want to see your simple algorithm approach.
+
+To run this project, clone this repo, run `bundle install`, then `bin/rails db:migrate RAILS_ENV=development`, and then `rails s`.
+
+It should be up and running on the localhost:3000 if you're in the terminal.
+
+Currently using the gem ruby '2.7.0', ActiveRecord Migration is Version 5.2
+
+# everlywell-proj

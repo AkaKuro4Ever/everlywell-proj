@@ -1,5 +1,9 @@
 <div id="member-list">
 <%@members.each do |member|%>
   <h3><%=link_to member.name, member_path(member)%></h3>
+	<br></br>
+	Shortened Link to Website:  <a href=<%=member.shortened_weblink%>><%=member.shortened_weblink%></a>
+	<br></br>
+	Number of Friends: <%=member.following.count%>
   <%end%>
 </div>

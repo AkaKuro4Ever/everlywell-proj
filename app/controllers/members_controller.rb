@@ -30,7 +30,6 @@ skip_before_action :authenticate_user
   def create
 		@member = Member.create(member_params)
 		shortened_weblink = shorten_weblink
-		binding.pry
 		@member.update(shortened_weblink: shortened_weblink)
     if @member.valid?
       session[:member_id] = @member.id
@@ -42,25 +41,30 @@ skip_before_action :authenticate_user
 
 	def show
     @member
-  end
+	end
+	
+	def make_friends
+		@member
+	end
 
-	def edit
-		binding.pry
-    if @member.nil?
-      redirect_to members_path, alert: "Member not found."
-		else
-      redirect_to edit_member_path(@member)
-    end
-  end
+	# def edit
+	# # TODO: Not yet done - has a problem with the viewing path, but not part of Everyly requirements, so moving on
+  #   if @member.nil?
+  #     redirect_to members_path, alert: "Member not found."
+	# 	else
+  #     redirect_to edit_member_path(@member)
+  #   end
+  # end
 
-  def update
-    @member.update(user_params)
-    if @member.valid?
-      redirect_to member_path(@member)
-    else
-      render :edit
-    end
-  end
+	# def update
+	# # TODO: Same as edit route
+  #   @member.update(user_params)
+  #   if @member.valid?
+  #     redirect_to member_path(@member)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @member = Member.find_by(username: params[:name])

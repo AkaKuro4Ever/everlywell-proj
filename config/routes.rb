@@ -1,24 +1,8 @@
 Rails.application.routes.draw do
-	resources :members
+	resources :members, only: [:index, :new, :create, :show, :destroy]
 	get '/auth' => 'members#oauthorize'
 	root 'application#index'
 end
-  # resources :comments
-  # resources :users, only: [:index, :create, :show, :edit, :destroy, :update] do
-  #   resources :books, only: [:new, :show, :index, :edit]
-  # end
-  # resources :genres, only: [:index, :create, :show] do
-  #   resources :books, only: [:index]
-  # end
-  # resources :books, only: [:index, :show, :create, :update, :destroy] do
-  #   resources :comments, only: [:create]
-  # end
-  # resources :sessions, only: [:create]
-
-  # #Remember to put indexes for each genre
-  # get '/signup' => 'users#new'
-  # post '/follow/:id' => 'books#follow', as: :follow
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
