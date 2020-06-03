@@ -1,49 +1,94 @@
 class MembersController < ApplicationController
 
-	def new
-    @member = Member.new(member_ids: params[:member_id])
+before_action :set_member
+skip_before_action :set_member, only: [:destroy, :create, :index, :new, :oauthorize]
+skip_before_action :authenticate_user
+
+	def index
+    @members = Member.all
+	end
+	
+	def oauthorize
+			resp = Faraday.post("https://api-ssl.bitly.com/oauth/access_token") do |req|
+			req.headers['Content-Type'] = 'application/json'
+			req.headers['Accept'] = 'application/json'
+			req.params['client_id'] = ENV['BITLY_CLIENT_ID']
+			req.params['client_secret'] = ENV['BITLY_SECRET']
+			req.params['grant_type'] = 'authorization_code'
+			req.params['redirect_uri'] = "http://localhost:3000/auth"
+			req.params['code'] = params[:code]
+		end
+		body = JSON.parse(resp.body)
+		session[:token] = body["access_token"]
+  	redirect_to root_path
+	end
+
+  def new
+    @member = Member.new
   end
 
   def create
-    @member = Member.create(member_params)
-    if @member.invalid?
+		@member = Member.create(member_params)
+		shortened_weblink = shorten_weblink
+		binding.pry
+		@member.update(shortened_weblink: shortened_weblink)
+    if @member.valid?
+      session[:member_id] = @member.id
+      redirect_to member_path(@member)
+    else
       render :new
-    else
-     @member.members << current_member if @member.save
-     redirect_to member_path(@member)
     end
   end
 
-  def show
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @member}
-    end
+	def show
+    @member
   end
 
-  def edit
-    if params[:member_id]
-    @member = member.find_by(id: params[:member_id])
-      if @member.nil?
-        redirect_to members_path, alert: "Author not found."
-      elsif  !@member = @member.members.find_by(id: params[:id])
-        redirect_to member_members_path(@member), alert: "member not found."
-      else
-        redirect_to member_members_path(@member) if logged_in? && !@member.members.find_by(id: current_member.id)
-      end
-    else
-    @post = Post.find(params[:id])
+	def edit
+		binding.pry
+    if @member.nil?
+      redirect_to members_path, alert: "Member not found."
+		else
+      redirect_to edit_member_path(@member)
     end
   end
 
   def update
-    @member.update(member_params)
-    redirect_to member_path(@member)
+    @member.update(user_params)
+    if @member.valid?
+      redirect_to member_path(@member)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @member = Member.find_by(username: params[:name])
     @member.destroy
-
-    redirect_to members_path
+    redirect_to '/'
   end
+
+	private
+	
+	def set_member
+    @member = Member.where(id: params[:id]).first
+  end
+
+	def member_params
+    params.require(:member).permit(:id, :name, :website)
+	end
+	
+	private
+
+	def shorten_weblink
+		url = "https://api-ssl.bitly.com/v4/shorten"
+		resp = Faraday.post(url) do |req|
+			req.headers['Content-Type'] = 'application/json'
+			req.headers['Authorization'] = session[:token]
+			req.headers['Accept'] = 'application/json'
+			 req.body = '{ "long_url": "https://www.facebook.com/deborah.seow.3/" }'
+		end
+		body = JSON.parse(resp.body)
+		shortened_link = body["link"]
+	end
 end

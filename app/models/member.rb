@@ -1,4 +1,8 @@
 class Member < ApplicationRecord
+
+	def name_and_website
+		name + " and " + website + "!"
+	end
   # has_many :user_books
   # has_many :books, through: :user_books
   # has_many :comments

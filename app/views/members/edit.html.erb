@@ -1,0 +1,9 @@
+<%=form_for @member do |f|%>
+  <%= render :partial => "form", :locals=>{:f=>f} %>
+    <%=f.label :name%>
+    <%=f.text_field :name%>
+		<%=f.label :website%>
+    <%=f.text_field :website%>
+  <br></br>
+  <%=f.submit %>
+<%end%>
