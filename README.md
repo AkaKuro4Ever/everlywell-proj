@@ -8,7 +8,7 @@ Welcome to the Everlywell Backend Coding Challenge.
 
 - [ ] When a member is created, all the heading (h1-h3) values are pulled in from the website to that members profile.
 
-[x] The website url is shortened (e.g. using <http://goo.gl).>
+- [x] The website url is shortened (e.g. using <http://goo.gl).>
 
 - [-] After the member has been added, I can define their friendships with other existing members. Friendships are bi-directional i.e. If David is a friend of Oliver, Oliver is always a friend of David as well.
 
