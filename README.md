@@ -32,6 +32,9 @@ We encourage the use of any libraries for everything except the search functiona
 
 ## Instructions
 
+### IMPORTANT NOTE/WARNING: 
+I've realized that the oauth (and thus the inital root page and app) will probably not work on a machine that is not my local, specifically because of the .env that is not listed in the GH repo. As a safe practice, I didn't add it here, but if this project is something you want to spin up personally, please let me know and I will add the creds in (since it's just bit.ly).
+
 To run this project, clone this repo, run `bundle install`, then `bin/rails db:migrate RAILS_ENV=development`, and then `rails s`.
 
 It should be up and running on the localhost:3000 if you're in the terminal.
