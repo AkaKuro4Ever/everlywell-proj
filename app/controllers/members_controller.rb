@@ -82,11 +82,12 @@ skip_before_action :authenticate_user
 
 	def shorten_weblink
 		url = "https://api-ssl.bitly.com/v4/shorten"
+		long_url = member_params[:website]
 		resp = Faraday.post(url) do |req|
 			req.headers['Content-Type'] = 'application/json'
 			req.headers['Authorization'] = session[:token]
 			req.headers['Accept'] = 'application/json'
-			 req.body = '{ "long_url": "https://www.facebook.com/deborah.seow.3/" }'
+			req.body = { 'long_url':  "#{long_url}"}.to_json
 		end
 		body = JSON.parse(resp.body)
 		shortened_link = body["link"]

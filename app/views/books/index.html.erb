@@ -1,7 +1,0 @@
-<h3><%=@user.username + "'s Works" if @user%></h3>
-
-
-<button id="sort-books">Sort Books</button>
-<div id="book-list">
-  <%= render partial: "book_list", :locals=>{:books=>@books} %>
-</div>
