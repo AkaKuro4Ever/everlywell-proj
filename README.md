@@ -6,7 +6,7 @@ Welcome to the Everlywell Backend Coding Challenge.
 
 - [x] A member can be created using their name and a personal website address.
 
-[ ] When a member is created, all the heading (h1-h3) values are pulled in from the website to that members profile.
+- [ ] When a member is created, all the heading (h1-h3) values are pulled in from the website to that members profile.
 
 [x] The website url is shortened (e.g. using <http://goo.gl).>
 
