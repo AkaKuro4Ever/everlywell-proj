@@ -30,7 +30,7 @@ Welcome to the Everlywell Backend Coding Challenge.
 
 We encourage the use of any libraries for everything except the search functionality, in which we want to see your simple algorithm approach.
 
-# Instructions
+## Instructions
 
 To run this project, clone this repo, run `bundle install`, then `bin/rails db:migrate RAILS_ENV=development`, and then `rails s`.
 
