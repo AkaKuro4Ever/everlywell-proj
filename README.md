@@ -12,7 +12,7 @@ Welcome to the Everlywell Backend Coding Challenge.
 
 - [-] After the member has been added, I can define their friendships with other existing members. Friendships are bi-directional i.e. If David is a friend of Oliver, Oliver is always a friend of David as well.
 
-- [x] Relationship schema for bi-directional friendships
+  - [x] Relationship schema for bi-directional friendships
 
 - [x] The interface should list all members with their name, short url and the number of friends.
 
